@@ -3,14 +3,16 @@ import { Link } from '@inertiajs/vue3'
 </script>
 
 <template>
-    <main>
-        <header>
-            <Link href="/public">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/contact">Contact</Link>
-        </header>
-        <article>
-            <slot />
-        </article>
-    </main>
+	<main>
+		<header>
+			<Link href="/">Home</Link>
+			<Link href="/Author">Autores</Link>
+			<Link href="/Book">Livros</Link>
+			<Link href="/Subject">Assuntos</Link>
+			<Link href="/logout" method="post">Sair</Link>
+		</header>
+		<article>
+			<slot />
+		</article>
+	</main>
 </template>
