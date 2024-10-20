@@ -195,6 +195,9 @@ return [
         'title' => 'Título',
         'author_id' => 'Autor',
         'price' => 'Preço',
+        'publisher' => 'Editora',
+        'edition' => 'Edição',
+        'publication_year' => 'Ano de Publicação',
     ],
 
 ];

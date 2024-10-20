@@ -56,11 +56,19 @@ defineProps({
 								><i class="bi bi-pencil"></i>
 							</Link>
 							<Link
-								href="/livros/criar"
+								:href="'/livros/' + book.id"
 								class="btn btn-danger me-2"
 								as="button"
 								type="button"
+								method="delete"
 								><i class="bi bi-trash"></i>
+							</Link>
+							<Link
+								:href="'/livros/' + book.id + '/relatorio'"
+								class="btn btn-info me-2"
+								as="button"
+								type="button"
+								><i class="bi bi-book"></i>
 							</Link>
 						</td>
 					</tr>
