@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('description')->unique();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index(['name', 'deleted_at']);
+            $table->index(['description', 'deleted_at']);
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('subjects');
     }
 };
