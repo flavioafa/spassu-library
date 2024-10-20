@@ -9,7 +9,12 @@ class SubjectController extends Controller
 {
     public function index()
     {
-        return Subject::all();
+        return inertia(
+            'Subject/SubjectIndex',
+            [
+                'subjects' => Subject::all(),
+            ]
+        );
     }
 
     public function store(Request $request)
@@ -18,12 +23,19 @@ class SubjectController extends Controller
             'description' => ['required', 'unique:subjects'],
         ]);
 
-        return Subject::create($data);
+        Subject::create($data);
+
+        return redirect()->route('subjects.index');
     }
 
     public function show(Subject $subject)
     {
-        return $subject;
+        return inertia(
+            'Subject/SubjectShow',
+            [
+                'subject' => $subject,
+            ]
+        );
     }
 
     public function update(Request $request, Subject $subject)
@@ -34,13 +46,13 @@ class SubjectController extends Controller
 
         $subject->update($data);
 
-        return $subject;
+        return redirect()->route('subjects.index');
     }
 
     public function destroy(Subject $subject)
     {
         $subject->delete();
 
-        return response()->json();
+        return redirect()->route('subjects.index');
     }
 }

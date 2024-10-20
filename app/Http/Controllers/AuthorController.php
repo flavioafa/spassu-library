@@ -9,7 +9,22 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        return Author::all();
+        return inertia(
+            'Author/AuthorIndex',
+            [
+                'authors' => Author::all(),
+            ]
+        );
+    }
+
+    public function create()
+    {
+        return inertia(
+            'Author/AuthorCreate',
+            [
+                'author' => new Author,
+            ]
+        );
     }
 
     public function store(Request $request)
@@ -18,12 +33,19 @@ class AuthorController extends Controller
             'name' => ['required', 'unique:authors'],
         ]);
 
-        return Author::create($data);
+        Author::create($data);
+
+        return redirect()->route('authors.index');
     }
 
     public function show(Author $author)
     {
-        return $author;
+        return inertia(
+            'Author/AuthorShow',
+            [
+                'author' => $author,
+            ]
+        );
     }
 
     public function update(Request $request, Author $author)
@@ -34,13 +56,13 @@ class AuthorController extends Controller
 
         $author->update($data);
 
-        return $author;
+        return redirect()->route('authors.index');
     }
 
     public function destroy(Author $author)
     {
         $author->delete();
 
-        return response()->json();
+        return redirect()->route('authors.index');
     }
 }
