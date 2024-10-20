@@ -1,4 +1,6 @@
 <script setup>
+import Pagination from '@/Shared/Pagination.vue'
+
 defineProps({
 	authors: Object,
 })
@@ -56,6 +58,7 @@ defineProps({
 					</tr>
 				</tbody>
 			</table>
+			<Pagination :pagination="authors" />
 		</div>
 	</div>
 </template>

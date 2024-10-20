@@ -14,8 +14,7 @@ class AuthorController extends Controller
             [
                 'authors' => Author::query()
                     ->select('id', 'name', 'created_at')
-                    ->paginate(10)
-                    ->withQueryString(),
+                    ->paginate(10),
             ]
         );
     }
