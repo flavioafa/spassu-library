@@ -12,11 +12,11 @@ defineProps({
 	</Head>
 	<div class="container">
 		<div class="row">
-			<div class="d-grid gap-4 d-md-flex">
+			<div class="d-grid gap-2 d-md-flex">
 				<div>
 					<h1>Livros</h1>
 				</div>
-				<div class="align-middle">
+				<div class="align-content-center">
 					<Link
 						href="/livros/criar"
 						class="btn btn-success bi bi-plus"
