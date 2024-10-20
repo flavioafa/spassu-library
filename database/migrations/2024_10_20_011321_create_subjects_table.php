@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
-            $table->string('description')->unique();
+            $table->string('description', 20);
             $table->timestamps();
             $table->softDeletes();
 

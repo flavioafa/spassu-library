@@ -12,7 +12,10 @@ class SubjectController extends Controller
         return inertia(
             'Subject/SubjectIndex',
             [
-                'subjects' => Subject::all(),
+                'subjects' => Subject::query()
+                    ->select('id', 'description', 'created_at')
+                    ->paginate(10)
+                    ->withQueryString(),
             ]
         );
     }
@@ -20,7 +23,7 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'description' => ['required', 'unique:subjects'],
+            'description' => ['required', 'max:20'],
         ]);
 
         Subject::create($data);
@@ -41,7 +44,7 @@ class SubjectController extends Controller
     public function update(Request $request, Subject $subject)
     {
         $data = $request->validate([
-            'description' => ['required', 'unique:subjects'],
+            'description' => ['required', 'max:20'],
         ]);
 
         $subject->update($data);

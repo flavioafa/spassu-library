@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>Subject Index</template>
+<template>
+	<Head>
+		<title>Assuntos</title>
+	</Head>
+	Subject Index
+</template>

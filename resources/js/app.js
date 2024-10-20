@@ -1,5 +1,6 @@
 import './bootstrap'
 import 'bootstrap' //Import do bootstrap library
+import 'bootstrap-icons/font/bootstrap-icons.css' //Import do bootstrap icons
 
 import { createApp, h } from 'vue'
 import { createInertiaApp, Head, Link } from '@inertiajs/vue3'

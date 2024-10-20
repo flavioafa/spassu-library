@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>Book Create</template>
+<template>
+	<Head>
+		<title>Criar Livro</title>
+	</Head>
+	Book Create
+</template>

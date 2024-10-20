@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>Book Show</template>
+<template>
+	<Head>
+		<title>Visualizar Livros</title>
+	</Head>
+	Book Show
+</template>

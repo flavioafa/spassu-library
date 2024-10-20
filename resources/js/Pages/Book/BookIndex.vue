@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>Book Index</template>
+<template>
+	<Head>
+		<title>Livros</title>
+	</Head>
+	Book Index
+</template>

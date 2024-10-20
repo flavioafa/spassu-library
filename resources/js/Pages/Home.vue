@@ -1,6 +1,8 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-    Home
+	<Head>
+		<title>Home</title>
+	</Head>
+	Home
 </template>

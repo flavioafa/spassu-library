@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>Author Create</template>
+<template>
+	<Head>
+		<title>Criar Autor</title>
+	</Head>
+	Author Create
+</template>

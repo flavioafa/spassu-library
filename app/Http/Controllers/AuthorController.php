@@ -12,7 +12,10 @@ class AuthorController extends Controller
         return inertia(
             'Author/AuthorIndex',
             [
-                'authors' => Author::all(),
+                'authors' => Author::query()
+                    ->select('id', 'name', 'created_at')
+                    ->paginate(10)
+                    ->withQueryString(),
             ]
         );
     }
@@ -30,7 +33,7 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'unique:authors'],
+            'name' => ['required', 'unique:authors', 'max:40'],
         ]);
 
         Author::create($data);
@@ -51,7 +54,7 @@ class AuthorController extends Controller
     public function update(Request $request, Author $author)
     {
         $data = $request->validate([
-            'name' => ['required', 'unique:authors'],
+            'name' => ['required', 'unique:authors', 'max:40'],
         ]);
 
         $author->update($data);

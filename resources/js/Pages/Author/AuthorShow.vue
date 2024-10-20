@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>Author Show</template>
+<template>
+	<Head>
+		<title>Visualizar Autor</title>
+	</Head>
+	Author Show
+</template>

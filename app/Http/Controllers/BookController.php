@@ -12,7 +12,11 @@ class BookController extends Controller
         return inertia(
             'Book/BookIndex',
             [
-                'books' => Book::all(),
+                'books' => Book::query()
+                    ->select('id', 'title', 'publisher', 'edition', 'publication_year', 'created_at')
+                    ->paginate(10)
+                    ->withQueryString(),
+
             ]
         );
     }
@@ -20,10 +24,10 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => ['required', 'unique:books'],
-            'publisher' => ['required'],
+            'title' => ['required', 'max:40'],
+            'publisher' => ['required', 'max:40'],
             'edition' => ['required', 'integer'],
-            'publication_year' => ['required'],
+            'publication_year' => ['required', 'min:4', 'max:4'],
         ]);
 
         Book::create($data);
@@ -44,10 +48,10 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $data = $request->validate([
-            'title' => ['required', 'unique:books'],
-            'publisher' => ['required'],
+            'title' => ['required', 'max:40'],
+            'publisher' => ['required', 'max:40'],
             'edition' => ['required', 'integer'],
-            'publication_year' => ['required'],
+            'publication_year' => ['required', 'min:4', 'max:4'],
         ]);
 
         $book->update($data);

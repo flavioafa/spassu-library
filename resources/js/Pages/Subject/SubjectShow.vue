@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>Subject Show</template>
+<template>
+	<Head>
+		<title>Visualizar Assunto</title>
+	</Head>
+	Subject Show
+</template>

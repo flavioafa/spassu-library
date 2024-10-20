@@ -1,3 +1,8 @@
 <script setup></script>
 
-<template>Subject Create</template>
+<template>
+	<Head>
+		<title>Criar Assunto</title>
+	</Head>
+	Subject Create
+</template>
