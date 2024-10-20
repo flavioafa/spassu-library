@@ -14,6 +14,7 @@ class AuthorController extends Controller
             [
                 'authors' => Author::query()
                     ->select('id', 'name', 'created_at')
+                    ->orderBy('id', 'desc')
                     ->paginate(10),
             ]
         );
@@ -31,9 +32,12 @@ class AuthorController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => ['required', 'unique:authors', 'max:40'],
-        ]);
+        $data = validator(
+            $request->all(),
+            [
+                'name' => ['required', 'unique:authors', 'max:40'],
+            ]
+        )->validate();
 
         Author::create($data);
 
@@ -45,7 +49,10 @@ class AuthorController extends Controller
         return inertia(
             'Author/AuthorShow',
             [
-                'author' => $author,
+                'author' => [
+                    'id' => $author->id,
+                    'name' => $author->name,
+                ],
             ]
         );
     }

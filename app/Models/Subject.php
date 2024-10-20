@@ -12,6 +12,14 @@ class Subject extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $attributes = [
+        'description' => '',
+    ];
+
+    protected $fillable = [
+        'description',
+    ];
+
     public function books(): BelongsToMany
     {
         return $this->belongsToMany(Book::class);

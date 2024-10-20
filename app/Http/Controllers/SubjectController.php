@@ -14,8 +14,19 @@ class SubjectController extends Controller
             [
                 'subjects' => Subject::query()
                     ->select('id', 'description', 'created_at')
+                    ->orderBy('id', 'desc')
                     ->paginate(10)
                     ->withQueryString(),
+            ]
+        );
+    }
+
+    public function create()
+    {
+        return inertia(
+            'Subject/SubjectCreate',
+            [
+                'author' => new Subject,
             ]
         );
     }

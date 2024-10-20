@@ -14,6 +14,7 @@ class BookController extends Controller
             [
                 'books' => Book::query()
                     ->select('id', 'title', 'publisher', 'price', 'edition', 'publication_year', 'created_at')
+                    ->orderBy('id', 'desc')
                     ->paginate(10)
                     ->withQueryString(),
 

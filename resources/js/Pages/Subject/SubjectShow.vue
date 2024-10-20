@@ -1,8 +1,15 @@
-<script setup></script>
+<script setup>
+import SubjectForm from '@/Pages/Subject/SubjectForm.vue'
+
+defineProps({
+	subject: Object,
+	errors: Object,
+})
+</script>
 
 <template>
 	<Head>
-		<title>Visualizar Assunto</title>
+		<title>Alterar Assunto</title>
 	</Head>
-	Subject Show
+	<SubjectForm :errors="errors" :subject="subject" />
 </template>

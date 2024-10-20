@@ -1,8 +1,15 @@
-<script setup></script>
+<script setup>
+import AuthorForm from '@/Pages/Author/AuthorForm.vue'
+
+defineProps({
+	author: Object,
+	errors: Object,
+})
+</script>
 
 <template>
 	<Head>
-		<title>Visualizar Autor</title>
+		<title>Alterar Autor</title>
 	</Head>
-	Author Show
+	<AuthorForm :errors="errors" :author="author" />
 </template>

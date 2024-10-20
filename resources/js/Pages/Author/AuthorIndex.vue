@@ -48,10 +48,11 @@ defineProps({
 								><i class="bi bi-pencil"></i>
 							</Link>
 							<Link
-								href="/autores/criar"
+								:href="'/autores/' + author.id"
 								class="btn btn-danger me-2"
 								as="button"
 								type="button"
+								method="delete"
 								><i class="bi bi-trash"></i>
 							</Link>
 						</td>
