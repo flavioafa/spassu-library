@@ -13,7 +13,7 @@ class BookController extends Controller
             'Book/BookIndex',
             [
                 'books' => Book::query()
-                    ->select('id', 'title', 'publisher', 'edition', 'publication_year', 'created_at')
+                    ->select('id', 'title', 'publisher', 'price', 'edition', 'publication_year', 'created_at')
                     ->paginate(10)
                     ->withQueryString(),
 

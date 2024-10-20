@@ -32,20 +32,20 @@ defineProps({
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Nome</th>
-						<th scope="col">Ações</th>
+						<th class="text-center" scope="col">Ações</th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
 					<tr v-for="author in authors.data" :key="author.id">
 						<th scope="row">{{ author.id }}</th>
 						<td>{{ author.name }}</td>
-						<td>
+						<td class="text-center">
 							<Link
 								:href="'/autores/' + author.id"
 								class="btn btn-primary me-2"
 								as="button"
 								type="button"
-								><i class="bi bi-eye"></i>
+								><i class="bi bi-pencil"></i>
 							</Link>
 							<Link
 								href="/autores/criar"
