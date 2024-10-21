@@ -4,6 +4,10 @@ import Pagination from '@/Shared/Pagination.vue'
 defineProps({
 	books: Object,
 })
+
+const downloadPDF = (id) => {
+	window.location.href = `/livros/${id}/relatorio`
+}
 </script>
 
 <template>
@@ -63,13 +67,9 @@ defineProps({
 								method="delete"
 								><i class="bi bi-trash"></i>
 							</Link>
-							<Link
-								:href="'/livros/' + book.id + '/relatorio'"
-								class="btn btn-info me-2"
-								as="button"
-								type="button"
-								><i class="bi bi-book"></i>
-							</Link>
+							<button class="btn btn-info me-2" @click="downloadPDF(book.id)">
+								<i class="bi bi-book"></i>
+							</button>
 						</td>
 					</tr>
 				</tbody>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Subject;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -114,11 +115,42 @@ class BookController extends Controller
 
     public function report($id)
     {
-        dd(
-            \DB::table('book_details')
-                ->select('title', 'publisher', 'price', 'edition', 'publication_year', 'author', 'subject')
-                ->where('id', $id)
-                ->first()
-        );
+
+        $books = \DB::table('book_details')
+            ->select(
+                [
+                    'book_id',
+                    'book_title',
+                    'book_publisher',
+                    'book_price',
+                    'book_edition',
+                    'book_publication_year',
+                    'author_id',
+                    'author_name',
+                    'subject_id',
+                    'subject_description',
+                ]
+            )
+            ->where('book_id', $id)
+            ->orderBy('author_name')
+            ->get();
+
+        $authors = $books->pluck(['author_name'])->unique();
+        $subjects = $books->pluck(['subject_description'])->unique();
+
+        $data = [
+            'id' => $books->first()->book_id,
+            'title' => $books->first()->book_title,
+            'publisher' => $books->first()->book_publisher,
+            'price' => $books->first()->book_price,
+            'edition' => $books->first()->book_edition,
+            'publication_year' => $books->first()->book_publication_year,
+            'authors' => $authors->values()->toArray(),
+            'subjects' => $subjects->values()->toArray(),
+        ];
+
+        $pdf = Pdf::loadView('book-report', $data);
+
+        return $pdf->download('report.pdf');
     }
 }

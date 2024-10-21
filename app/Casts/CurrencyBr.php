@@ -14,7 +14,7 @@ class CurrencyBr implements CastsAttributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): string
     {
-        return number_format((float) $value, 2, ',', '.');
+        return formatCurrencyToBr($value);
     }
 
     /**
@@ -24,8 +24,6 @@ class CurrencyBr implements CastsAttributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): string
     {
-        $value = str_replace(['.', ','], ['', '.'], $value);
-
-        return number_format((float) $value, 2, '.', '');
+        return formatCurrencyFromBr($value);
     }
 }
