@@ -24,9 +24,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('secret'),
         ]);
 
-        $subjects = Subject::factory(100)->create();
-        $authors = Author::factory(100)->create();
-        Book::factory(50)
+        $subjects = Subject::factory(30)->create();
+        $authors = Author::factory(30)->create();
+        Book::factory(15)
             ->hasAttached($authors->random(3))
             ->hasAttached($subjects->random(3))
             ->create();

@@ -26,8 +26,8 @@ const submit = () => {
 
 onBeforeMount(() => {
 	if (props.book) {
-		form.authors = props.book.authors.map((author) => author.id)
-		form.subjects = props.book.subjects.map((subject) => subject.id)
+		form.authors = props.book.authors?.map((author) => author.id)
+		form.subjects = props.book.subjects?.map((subject) => subject.id)
 	}
 })
 </script>

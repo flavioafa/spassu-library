@@ -32,7 +32,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('livros', [BookController::class, 'index'])->name('books.index');
         Route::post('livros', [BookController::class, 'store'])->name('books.store');
         Route::get('livros/criar', [BookController::class, 'create'])->name('books.create');
-        Route::get('livros/{id}/relatorio', [BookController::class, 'report'])->name('books.report');
+        Route::get('livros/{id}/relatorio', [BookController::class, 'reportBook'])->name('books.report');
+        Route::get('livros/relatorio', [BookController::class, 'reportAll'])->name('books.report_all');
         Route::get('livros/{book}', [BookController::class, 'show'])->name('books.show');
         Route::put('livros/{book}', [BookController::class, 'update'])->name('books.update');
         Route::delete('livros/{book}', [BookController::class, 'destroy'])->name('books.destroy');

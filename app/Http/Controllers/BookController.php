@@ -113,9 +113,22 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function report($id)
+    public function reportBook($id)
     {
+        $pdf = Pdf::loadView('book-report', ['books' => $this->getBookDetails($id)]);
 
+        return $pdf->download('relatorio.pdf');
+    }
+
+    public function reportAll()
+    {
+        $pdf = Pdf::loadView('book-report', ['books' => $this->getBookDetails()]);
+
+        return $pdf->download('relatorio.pdf');
+    }
+
+    private function getBookDetails(string $id = ''): array
+    {
         $books = \DB::table('book_details')
             ->select(
                 [
@@ -131,26 +144,27 @@ class BookController extends Controller
                     'subject_description',
                 ]
             )
-            ->where('book_id', $id)
+            ->when($id, fn ($query) => $query->where('book_id', $id))
+            ->orderBy('book_id')
             ->orderBy('author_name')
             ->get();
 
-        $authors = $books->pluck(['author_name'])->unique();
-        $subjects = $books->pluck(['subject_description'])->unique();
+        $books = $books->groupBy('book_id');
 
-        $data = [
-            'id' => $books->first()->book_id,
-            'title' => $books->first()->book_title,
-            'publisher' => $books->first()->book_publisher,
-            'price' => $books->first()->book_price,
-            'edition' => $books->first()->book_edition,
-            'publication_year' => $books->first()->book_publication_year,
-            'authors' => $authors->values()->toArray(),
-            'subjects' => $subjects->values()->toArray(),
-        ];
+        $books
+            ->transform(
+                fn ($book) => [
+                    'id' => $book->first()->book_id,
+                    'title' => $book->first()->book_title,
+                    'publisher' => $book->first()->book_publisher,
+                    'price' => $book->first()->book_price,
+                    'edition' => $book->first()->book_edition,
+                    'publication_year' => $book->first()->book_publication_year,
+                    'authors' => $book->pluck(['author_name'])->unique()->values()->toArray(),
+                    'subjects' => $book->pluck(['subject_description'])->unique()->values()->toArray(),
+                ]
+            );
 
-        $pdf = Pdf::loadView('book-report', $data);
-
-        return $pdf->download('relatorio.pdf');
+        return $books->toArray();
     }
 }

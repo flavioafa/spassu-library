@@ -5,8 +5,12 @@ defineProps({
 	books: Object,
 })
 
-const downloadPDF = (id) => {
+const downloadBookReport = (id) => {
 	window.location.href = `/livros/${id}/relatorio`
+}
+
+const downloadAllBookReport = (id) => {
+	window.location.href = `/livros/relatorio`
 }
 </script>
 
@@ -27,6 +31,11 @@ const downloadPDF = (id) => {
 						as="button"
 						type="button"
 					/>
+				</div>
+				<div class="align-content-center">
+					<button class="btn btn-info me-2" @click="downloadAllBookReport">
+						<i class="bi bi-book"></i>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -67,7 +76,10 @@ const downloadPDF = (id) => {
 								method="delete"
 								><i class="bi bi-trash"></i>
 							</Link>
-							<button class="btn btn-info me-2" @click="downloadPDF(book.id)">
+							<button
+								class="btn btn-info me-2"
+								@click="downloadBookReport(book.id)"
+							>
 								<i class="bi bi-book"></i>
 							</button>
 						</td>
